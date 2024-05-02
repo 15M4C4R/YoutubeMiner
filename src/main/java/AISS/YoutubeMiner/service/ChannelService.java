@@ -1,10 +1,6 @@
 package AISS.YoutubeMiner.service;
 
-import AISS.YoutubeMiner.model.channel.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,8 +10,19 @@ public class ChannelService {
     @Autowired
     RestTemplate restTemplate;
 
-    private String token = "";
 
+    public List<Channel> channelSearch(String name){
+        ChannelSearch channels = null;
+        String uri = "https://www.googleapis.com/youtube/v3/search/?key="+this.token+"&part=snippet&q="
+                + name + "&type=channel&maxResults=10";
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<ChannelSearch> request = new HttpEntity<>(null,null);
+        ResponseEntity<ChannelSearch> response =
+                restTemplate.exchange(uri, HttpMethod.GET,request,ChannelSearch.class);
+        channels = response.getBody();
+        System.out.println(channels);
+        return channels.getItems();
+        }
     public Channel findOne(String id){
         Channel channel = null;
         String uri = "" + id;

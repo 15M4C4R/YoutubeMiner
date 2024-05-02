@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ChannelSearch {
+public class  ChannelSearch {
 
     @JsonProperty("items")
     private List<Channel> items;
