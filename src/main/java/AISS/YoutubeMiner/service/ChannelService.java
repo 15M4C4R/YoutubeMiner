@@ -11,18 +11,18 @@ public class ChannelService {
     RestTemplate restTemplate;
 
 
-    public List<Channel> channelSearch(String name){
+    public List<Channel> channelSearch(String name) {
         ChannelSearch channels = null;
-        String uri = "https://www.googleapis.com/youtube/v3/search/?key="+this.token+"&part=snippet&q="
+        String uri = "https://www.googleapis.com/youtube/v3/search/?key=" + this.token + "&part=snippet&q="
                 + name + "&type=channel&maxResults=10";
         HttpHeaders headers = new HttpHeaders();
-        HttpEntity<ChannelSearch> request = new HttpEntity<>(null,null);
+        HttpEntity<ChannelSearch> request = new HttpEntity<>(null, null);
         ResponseEntity<ChannelSearch> response =
-                restTemplate.exchange(uri, HttpMethod.GET,request,ChannelSearch.class);
+                restTemplate.exchange(uri, HttpMethod.GET, request, ChannelSearch.class);
         channels = response.getBody();
         System.out.println(channels);
         return channels.getItems();
-        }
+    }
     public Channel findOne(String id){
         Channel channel = null;
         String uri = "" + id;
