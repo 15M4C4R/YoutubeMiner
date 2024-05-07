@@ -1,6 +1,6 @@
 package AISS.YoutubeMiner.service;
 
-import AISS.YoutubeMiner.models.channel.Channel;
+import AISS.YoutubeMiner.models.comment.Comment;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,16 +10,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class ChannelServiceTest {
+class CommentServiceTest {
 
     @Autowired
-    ChannelService channelService;
+    CommentService commentService;
 
     @Test
-    void searchChannel(){
-        Channel channel = channelService.channelSearch("UCZbWTaVsdcX0lJPZRyw33sQ");
-        assertFalse(channel==null, "Channel is empty");
-        System.out.println(channel);
+    void commentsSearch() {
+        List<Comment> comments = commentService.commentsSearch("rRZdY6Pnz4A");
+        assertFalse(comments==null, "Channel is empty");
+        System.out.println(comments);
     }
-
 }
