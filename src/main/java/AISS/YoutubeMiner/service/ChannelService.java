@@ -29,7 +29,7 @@ public class ChannelService {
         ResponseEntity<ChannelSearch> response =
                 restTemplate.exchange(uri, HttpMethod.GET, request, ChannelSearch.class);
         Channel channel = response.getBody().getItems().stream().findFirst().get();
-        channel.setVideos(videoService.videoSearch(channel.getId()));
+        //channel.setVideos(videoService.videoSearch(channel.getId()));
         return channel;
     }
 
