@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,6 +18,10 @@ public class VideoService {
 
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
+    CaptionService captionService;
+    @Autowired
+    CommentService commentService;
 
     private String token = "AIzaSyCSI0c-yBEh-9leEGPj7bpk2Yl2CjSd9XM" ;
 
@@ -27,7 +32,14 @@ public class VideoService {
         HttpEntity<VideoSnippetSearch> request = new HttpEntity<>(null, headers);
         ResponseEntity<VideoSnippetSearch> response =
                 restTemplate.exchange(uri, HttpMethod.GET, request, VideoSnippetSearch.class);
-        return response.getBody().getItems();
+        List<VideoSnippet> videos = response.getBody().getItems();
+        List<VideoSnippet> videosNew = new ArrayList<>();
+        for(VideoSnippet v : videos){
+            v.setCaptions(captionService.captionsSearch(v.getId().toString()));
+            v.setComments(commentService.commentsSearch(v.getId().toString()));
+            videosNew.add(v);
+        }
+        return videosNew;
     }
 
 }

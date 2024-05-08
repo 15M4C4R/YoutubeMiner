@@ -16,6 +16,8 @@ import java.util.List;
 public class ChannelService {
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
+    VideoService videoService;
 
     private String token = "AIzaSyCSI0c-yBEh-9leEGPj7bpk2Yl2CjSd9XM" ;
 
@@ -26,8 +28,9 @@ public class ChannelService {
         HttpEntity<ChannelSearch> request = new HttpEntity<>(null, headers);
         ResponseEntity<ChannelSearch> response =
                 restTemplate.exchange(uri, HttpMethod.GET, request, ChannelSearch.class);
-        System.out.println(response.getBody().getItems().stream().findFirst().get().getVideos());
-        return response.getBody().getItems().stream().findFirst().get();
+        Channel channel = response.getBody().getItems().stream().findFirst().get();
+        channel.setVideos(videoService.videoSearch(channel.getId()));
+        return channel;
     }
 
 }
