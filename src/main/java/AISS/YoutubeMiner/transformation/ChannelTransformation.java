@@ -21,8 +21,7 @@ public class ChannelTransformation {
     }
 
     public static List<VideoVideo> videosParse(List<VideoSnippet> videos){
-        List<VideoVideo> videosNew = new ArrayList<VideoVideo>();
-        return videos.stream().map(v->videosNew.add(VideoTransformation.transformVideo(v))).toList();
+        return videos.stream().map(v->VideoTransformation.transformVideo(v)).toList();
     }
 
 }
