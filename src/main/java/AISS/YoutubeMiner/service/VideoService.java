@@ -26,7 +26,7 @@ public class VideoService {
     private String token = "AIzaSyCSI0c-yBEh-9leEGPj7bpk2Yl2CjSd9XM" ;
 
     public List<VideoSnippet> videoSearch(String channelId) {
-        String uri = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId="+channelId;
+        String uri = "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=1&channelId="+channelId;
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-goog-api-key", token);
         HttpEntity<VideoSnippetSearch> request = new HttpEntity<>(null, headers);
@@ -35,8 +35,8 @@ public class VideoService {
         List<VideoSnippet> videos = response.getBody().getItems();
         List<VideoSnippet> videosNew = new ArrayList<>();
         for(VideoSnippet v : videos){
-            v.setCaptions(captionService.captionsSearch(v.getId().toString()));
-            v.setComments(commentService.commentsSearch(v.getId().toString()));
+            v.setCaptions(captionService.captionsSearch(v.getId().getVideoId()));
+            v.setComments(commentService.commentsSearch(v.getId().getVideoId()));
             videosNew.add(v);
         }
         return videosNew;
