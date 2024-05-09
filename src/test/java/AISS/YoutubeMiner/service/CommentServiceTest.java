@@ -17,7 +17,7 @@ class CommentServiceTest {
 
     @Test
     void commentsSearch() {
-        List<Comment> comments = commentService.commentsSearch("rRZdY6Pnz4A");
+        List<Comment> comments = commentService.commentsSearch("rRZdY6Pnz4A",10);
         assertFalse(comments==null, "Channel is empty");
         System.out.println(comments);
     }

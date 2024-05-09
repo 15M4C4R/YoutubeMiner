@@ -17,7 +17,7 @@ class VideoServiceTest {
 
     @Test
     void videoSearch() {
-        List<VideoSnippet> videos = videoService.videoSearch("UCZbWTaVsdcX0lJPZRyw33sQ");
+        List<VideoSnippet> videos = videoService.videoSearch("UCZbWTaVsdcX0lJPZRyw33sQ",10,10);
         assertFalse(videos==null, "Channel is empty");
         System.out.println(videos);
     }

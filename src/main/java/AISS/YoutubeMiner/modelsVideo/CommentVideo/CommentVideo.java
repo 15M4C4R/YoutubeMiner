@@ -10,44 +10,30 @@ public class CommentVideo {
     @JsonProperty("user")
     private UserVideo user;
 
-
-
-    public UserVideo getUser() { return user; }
-
-    public void setUser(UserVideo user) {this.user = user;}
-
-    @JsonProperty("uri")
-    private String uri;
-
     @JsonProperty("id")
     private String id;
 
     @JsonProperty("text")
     private String text;
 
-    @JsonProperty("publishedAt")
-    private String publishedAt;
-
     @JsonProperty("created_on")
     private String created_on;
+
+    public UserVideo getUser() { return user; }
+
+    public void setUser(UserVideo user) {this.user = user;}
 
     @JsonProperty("text")
     public void setText(String text) {
         this.text = text;
     }
 
-    @JsonProperty("publishedAt")
-    public void setPublishedAt(String publishedAt) {this.publishedAt = publishedAt; }
-
     @JsonProperty("created_on")
     public void setCreated_on(String created_on) {
         this.created_on = created_on;
     }
 
-    public String getId() {
-        List<String> aux = List.of(uri.split("/"));
-        return aux.get(aux.size()-1);
-    }
+    public String getId() { return this.id;}
 
     public void setId(String id) {
         this.id = id;
@@ -56,11 +42,6 @@ public class CommentVideo {
     @JsonProperty("text")
     public String getText() {
         return text;
-    }
-
-    @JsonProperty("publishedAt")
-    public String getPublishedAt() {
-        return publishedAt;
     }
 
     @JsonProperty("created_on")
@@ -79,7 +60,7 @@ public class CommentVideo {
     private CommentVideo(String id,String text,String publishedAt,UserVideo user) {
         this.id = id;
         this.text = text;
-        this.publishedAt = publishedAt;
+        this.created_on = publishedAt;
         this.user = user;
     }
         public static CommentVideo of(String id, String text, String publishedAt, UserVideo user) {

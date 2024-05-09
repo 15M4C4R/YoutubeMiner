@@ -21,7 +21,7 @@ public class ChannelService {
 
     private String token = "AIzaSyCSI0c-yBEh-9leEGPj7bpk2Yl2CjSd9XM" ;
 
-    public Channel channelSearch(String id) {
+    public Channel channelSearch(String id, int maxVideos, int maxComments) {
         String uri = "https://www.googleapis.com/youtube/v3/channels?part=snippet&id="+id;
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-goog-api-key", token);
@@ -29,7 +29,7 @@ public class ChannelService {
         ResponseEntity<ChannelSearch> response =
                 restTemplate.exchange(uri, HttpMethod.GET, request, ChannelSearch.class);
         Channel channel = response.getBody().getItems().stream().findFirst().get();
-        //channel.setVideos(videoService.videoSearch(channel.getId()));
+        channel.setVideos(videoService.videoSearch(channel.getId(), maxVideos, maxComments));
         return channel;
     }
 

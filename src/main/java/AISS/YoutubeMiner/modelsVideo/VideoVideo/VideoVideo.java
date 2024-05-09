@@ -56,8 +56,7 @@ public class VideoVideo {
     private List<CommentVideo> comments;
 
     public String getId() {
-        List<String> aux = List.of(this.uri.split("/"));
-        return aux.get(aux.size()-1);
+        return this.id;
     }
 
     public void setId(String id) {

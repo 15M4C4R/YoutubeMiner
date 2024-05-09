@@ -20,8 +20,11 @@ public class ChannelTransformation {
         return channelVideo;
     }
 
+
     public static List<VideoVideo> videosParse(List<VideoSnippet> videos){
         return videos.stream().map(v->VideoTransformation.transformVideo(v)).toList();
     }
+
+
 
 }

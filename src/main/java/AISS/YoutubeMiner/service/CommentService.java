@@ -22,8 +22,8 @@ public class CommentService {
 
     private String token = "AIzaSyCSI0c-yBEh-9leEGPj7bpk2Yl2CjSd9XM" ;
 
-    public List<Comment> commentsSearch(String videoId){
-        String uri = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId="+videoId;
+    public List<Comment> commentsSearch(String videoId, Integer maxComments) {
+        String uri = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults="+maxComments+"&videoId="+videoId;
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-goog-api-key", token);
         HttpEntity<CommentSearch> request = new HttpEntity<>(null,headers);

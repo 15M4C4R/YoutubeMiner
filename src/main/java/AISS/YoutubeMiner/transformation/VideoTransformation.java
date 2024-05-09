@@ -27,7 +27,9 @@ public class VideoTransformation {
     }
 
     public static List<CommentVideo> commentParse(List<Comment> c){
-        return c.stream().map(com->CommentTransformation.transformChannel(com)).toList();
+        return c.stream().map(com->CommentTransformation.transformComment(com)).toList();
     }
+
+
 
 }
