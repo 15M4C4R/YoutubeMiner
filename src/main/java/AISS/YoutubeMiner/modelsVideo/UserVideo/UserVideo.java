@@ -1,5 +1,6 @@
 package AISS.YoutubeMiner.modelsVideo.UserVideo;
 
+import AISS.YoutubeMiner.models.comment.AuthorChannelId;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,10 +18,58 @@ public class UserVideo {
     //private String user_link = getLink();
     @JsonProperty("pictures")
     private PicturesVideo pictures;
+    @JsonProperty("authorChannelId")
+    private AuthorChannelId authorChannelId;
+    @JsonProperty("authorDisplayName")
+    private String authorDisplayName;
+    @JsonProperty("authorChannelUrl")
+    private String authorChannelUrl;
+    @JsonProperty("authorProfileImageUrl")
+    private String authorProfileImageUrl;
 
     private String picture_link;
 
     private String id;
+
+
+
+
+
+    @JsonProperty("authorChannelId")
+    public AuthorChannelId getAuthorChannelId() {
+        return authorChannelId;
+    }
+
+    @JsonProperty("authorChannelId")
+    public void setAuthorChannelId(AuthorChannelId authorChannelId) {this.authorChannelId = authorChannelId;}
+
+    @JsonProperty("authorDisplayName")
+    public String getAuthorDisplayName() {
+        return authorDisplayName;
+    }
+
+    @JsonProperty("authorDisplayName")
+    public void setAuthorDisplayName(String authorDisplayName) {
+        this.authorDisplayName = authorDisplayName;
+    }
+
+    @JsonProperty("authorChannelUrl")
+    public String getAuthorChannelUrl() {
+        return authorChannelUrl;
+    }
+
+    @JsonProperty("authorChannelUrl")
+    public void setAuthorChannelUrl(String authorChannelUrl) {
+        this.authorChannelUrl = authorChannelUrl;
+    }
+
+    @JsonProperty("authorProfileImageUrl")
+    public String getAuthorProfileImageUrl() {
+        return authorProfileImageUrl;
+    }
+
+    @JsonProperty("authorProfileImageUrl")
+    public void setAuthorProfileImageUrl(String authorProfileImageUrl) {this.authorProfileImageUrl = authorProfileImageUrl; }
 
     @JsonProperty("uri")
     public String getUri() {
@@ -104,5 +153,16 @@ public class UserVideo {
             sb.append(']');
         }
         return sb.toString();
+    }
+
+    private UserVideo(AuthorChannelId authorChannelId, String authorDisplayName, String authorChannelUrl, String authorProfileImageUrl) {
+        this.authorChannelId = authorChannelId;
+        this.authorDisplayName = authorDisplayName;
+        this.authorChannelUrl = authorChannelUrl;
+        this.authorProfileImageUrl = authorProfileImageUrl;
+    }
+
+    public static UserVideo of(AuthorChannelId authorChannelId, String authorDisplayName, String authorChannelUrl, String authorProfileImageUrl) {
+        return new UserVideo(authorChannelId,authorDisplayName,authorChannelUrl,authorProfileImageUrl);
     }
 }

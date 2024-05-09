@@ -44,5 +44,13 @@ public class CaptionVideo {
                 ", language='" + language + '\'' +
                 '}';
     }
+    private CaptionVideo(String id, String name, String language){
+        this.id=id;
+        this.name=name;
+        this.language=language;
+    }
 
+    public static CaptionVideo of(String id, String name, String language){
+        return new CaptionVideo(id,name,language);
+    }
 }

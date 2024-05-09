@@ -7,7 +7,7 @@ import AISS.YoutubeMiner.modelsVideo.UserVideo.UserVideo;
 public class CommentTransformation {
 
 
-    public static CommentVideo transformCaption(Comment com) {
+    public static CommentVideo transformChannel(Comment com) {
         return CommentVideo.of(
                 com.getCommentSnippet().getTopLevelComment().getId(),
                 com.getCommentSnippet().getTopLevelComment().getSnippet().getTextOriginal(),
