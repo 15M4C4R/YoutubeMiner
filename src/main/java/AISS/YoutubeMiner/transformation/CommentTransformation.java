@@ -18,7 +18,6 @@ public class CommentTransformation {
 
     public static UserVideo transformUser(Comment com) {
         return UserVideo.of(
-                com.getCommentSnippet().getTopLevelComment().getSnippet().getAuthorChannelId(),
                 com.getCommentSnippet().getTopLevelComment().getSnippet().getAuthorDisplayName(),
                 com.getCommentSnippet().getTopLevelComment().getSnippet().getAuthorChannelUrl(),
                 com.getCommentSnippet().getTopLevelComment().getSnippet().getAuthorProfileImageUrl()

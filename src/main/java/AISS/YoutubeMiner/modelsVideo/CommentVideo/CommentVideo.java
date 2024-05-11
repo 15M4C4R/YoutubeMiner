@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class CommentVideo {
-    @JsonProperty("user")
-    private UserVideo user;
+    @JsonProperty("author")
+    private UserVideo author;
 
     @JsonProperty("id")
     private String id;
@@ -19,9 +19,9 @@ public class CommentVideo {
     @JsonProperty("created_on")
     private String created_on;
 
-    public UserVideo getUser() { return user; }
+    public UserVideo getUser() { return author; }
 
-    public void setUser(UserVideo user) {this.user = user;}
+    public void setUser(UserVideo user) {this.author = user;}
 
     @JsonProperty("text")
     public void setText(String text) {
@@ -61,7 +61,7 @@ public class CommentVideo {
         this.id = id;
         this.text = text;
         this.created_on = publishedAt;
-        this.user = user;
+        this.author = user;
     }
         public static CommentVideo of(String id, String text, String publishedAt, UserVideo user) {
              return new CommentVideo(id,text,publishedAt,user);

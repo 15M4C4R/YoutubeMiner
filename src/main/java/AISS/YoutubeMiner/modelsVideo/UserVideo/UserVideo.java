@@ -12,12 +12,11 @@ public class UserVideo {
 
     @JsonProperty("name")
     private String name;
-    @JsonProperty("link")
-    private String link;
+    @JsonProperty("user_link")
+    private String user_link;
 
+    @JsonProperty("")
     private String picture_link;
-
-    private Long id;
 
     @JsonProperty("name")
     public String getName() {
@@ -29,21 +28,14 @@ public class UserVideo {
         this.name = name;
     }
 
-    @JsonProperty("link")
-    public String getLink() {
-        return link;
+    @JsonProperty("user_link")
+    public String getUserLink() {
+        return user_link;
     }
 
     @JsonProperty("link")
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserLink(String link) {
+        this.user_link = link;
     }
 
     public String getPicture_link() {
@@ -58,20 +50,18 @@ public class UserVideo {
     public String toString() {
         return "UserVideo{" +
                 "name='" + name + '\'' +
-                ", link='" + link + '\'' +
+                ", user_link='" + user_link + '\'' +
                 ", picture_link='" + picture_link + '\'' +
-                ", id='" + id + '\'' +
                 '}';
     }
 
-    private UserVideo(AuthorChannelId authorChannelId, String authorDisplayName, String authorChannelUrl, String authorProfileImageUrl) {
-        this.id = Long.getLong(authorChannelId.getValue());
+    private UserVideo(String authorDisplayName, String authorChannelUrl, String authorProfileImageUrl) {
         this.name = authorDisplayName;
-        this.link = authorChannelUrl;
+        this.user_link = authorChannelUrl;
         this.picture_link = authorProfileImageUrl;
     }
 
-    public static UserVideo of(AuthorChannelId authorChannelId, String authorDisplayName, String authorChannelUrl, String authorProfileImageUrl) {
-        return new UserVideo(authorChannelId,authorDisplayName,authorChannelUrl,authorProfileImageUrl);
+    public static UserVideo of(String authorDisplayName, String authorChannelUrl, String authorProfileImageUrl) {
+        return new UserVideo(authorDisplayName,authorChannelUrl,authorProfileImageUrl);
     }
 }

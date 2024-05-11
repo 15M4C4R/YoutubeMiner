@@ -14,7 +14,7 @@ public class ChannelVideo {
     @JsonProperty("description")
     private String description;
 
-    @JsonProperty("created_time")
+    @JsonProperty("createdTime")
     private String createdTime;
 
     private List<VideoVideo> videos;
