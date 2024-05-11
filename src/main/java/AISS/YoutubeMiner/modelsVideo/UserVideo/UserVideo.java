@@ -17,7 +17,7 @@ public class UserVideo {
 
     private String picture_link;
 
-    private String id;
+    private Long id;
 
     @JsonProperty("name")
     public String getName() {
@@ -39,10 +39,10 @@ public class UserVideo {
         this.link = link;
     }
 
-    public String getId() {
+    public Long getId() {
         return this.id;
     }
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,7 +65,7 @@ public class UserVideo {
     }
 
     private UserVideo(AuthorChannelId authorChannelId, String authorDisplayName, String authorChannelUrl, String authorProfileImageUrl) {
-        this.id = authorChannelId.getValue();
+        this.id = Long.getLong(authorChannelId.getValue());
         this.name = authorDisplayName;
         this.link = authorChannelUrl;
         this.picture_link = authorProfileImageUrl;

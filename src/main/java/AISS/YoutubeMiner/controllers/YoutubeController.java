@@ -5,6 +5,7 @@ import AISS.YoutubeMiner.service.ChannelService;
 import AISS.YoutubeMiner.transformation.ChannelTransformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class YoutubeController {
     RestTemplate restTemplate;
 
 
-        final String videoMinerUri = "http://localhost:8080/api/videoMiner/videos";
+        final String videoMinerUri = "http://localhost:8080/videominer/channels";
 
     @GetMapping("/{id}")
     public ChannelVideo getChannel(@PathVariable String id,
@@ -34,7 +35,7 @@ public class YoutubeController {
     public ChannelVideo sendChannel(@PathVariable String id,  @RequestParam(required = false,defaultValue = "10") int maxVideos,
                                     @RequestParam(required = false,defaultValue = "10") int maxComments){
         ChannelVideo canal = ChannelTransformation.transformChannel(service.channelSearch(id, maxVideos, maxComments));
-        HttpEntity<ChannelVideo> request = new HttpEntity<>(canal);
+        HttpEntity<ChannelVideo> request = new HttpEntity<>(canal,new HttpHeaders());
         ResponseEntity<ChannelVideo> response = restTemplate.exchange(videoMinerUri, HttpMethod.POST,request, ChannelVideo.class);
         return response.getBody();
     }

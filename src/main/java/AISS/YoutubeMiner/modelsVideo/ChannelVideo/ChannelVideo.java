@@ -74,13 +74,14 @@ public class ChannelVideo {
                 '}';
     }
 
-    private ChannelVideo(String id, String name, String description, String created_time) {
+    private ChannelVideo(String id, String name, String description, String created_time, List<VideoVideo> videos) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.createdTime = created_time;
+        this.videos = videos;
     }
     public static ChannelVideo of(String id, String name, String description, String created_time, List<VideoVideo> videoVideos){
-        return new ChannelVideo(id,name,description,created_time);
+        return new ChannelVideo(id,name,description,created_time,videoVideos);
     }
 }
